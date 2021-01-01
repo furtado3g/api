@@ -19,8 +19,9 @@
     "pg": "^8.5.1"
   },
   "scripts": {
-    "start": "tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts",
-    "startMail": "tsnd --transpile-only --ignore-watch node_modules --respawn src/maildummytest.ts",
+    "dev": "tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "start":"node ./src/server.js",
+    "build":"tsc ",
     "knex:migrate": "knex --knexfile knexfile.ts migrate:latest",
     "knex:migrate:rollback": "knex --knexfile knexfile.ts migrate:rollback",
     "test": "jest"
