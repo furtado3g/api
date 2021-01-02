@@ -6,7 +6,7 @@ const db = Knex({
     host: '127.0.0.1',
     user: 'postgres',
     password: 'Therev a7x',
-    database: 'poesias',
+    database: 'poetry',
     /* ssl: {
       rejectUnauthorized: false,
     }, */
