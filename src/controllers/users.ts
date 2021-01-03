@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import model from "../models/users";
 import checkFields from "../util/checkFields";
+import Password from './../util/passwordEncode'
 
 class UserController {
   async create(req: Request, res: Response) {
@@ -11,11 +12,12 @@ class UserController {
     if (emailUse.error) return res.status(422).json({ error: emailUse.error });
     if (!checkFields({ username, email, password, name, birthday }))
       res.status(400).json(emailUse.error);
+    const hashedPassword = new Password(password,process.env.SALT||'').encrypt()
     const result = await model.create({
       id: null,
       username,
       email,
-      password,
+      password : hashedPassword,
       name,
       birthday,
       profileImage: null,

@@ -20,7 +20,7 @@ class UserModel {
         email : user.email,
         password : user.password,
         name : user.name,
-        birthday : DateTime.fromFormat(user.birthday,'dd/MM/yyyy').toISO()
+        birthday : user.birthday
     }).then((result : any)=>{
         const {rowCount} = result
         if(rowCount > 0){
