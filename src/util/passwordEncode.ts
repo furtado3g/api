@@ -1,4 +1,5 @@
 import * as crypto from "crypto";
+import cryptoJs from "crypto-js"
 
 class Password {
   constructor(public password: string, public key: string) {}
@@ -8,18 +9,13 @@ class Password {
     const password = hash.digest('hex')
     return password 
   }
-  encode(){
-    const hash = crypto.createCipheriv('aes-256-gcm',this.key,process.env.IV||'')
-    hash.update(this.password,'utf8')
-    const ciphed = hash.final('hex')
-    return ciphed
+  encode(msg : string){
+    const hash = cryptoJs.AES.encrypt(msg,process.env.SALT||'').toString()
+    return hash
   }
-  decode(){
-    const hash = crypto.createDecipheriv('aes-256-gcm',this.key,process.env.IV||'')
-    hash.update(this.password,'hex')
-    const deciphedString = hash.final('utf-8')
-    console.log(deciphedString)
-    return deciphedString
+  decode(msg : string){
+    const message = cryptoJs.AES.decrypt(msg,process.env.SALT||'').toString(cryptoJs.enc.Utf8)
+    return message
   }
 }
 

@@ -1,15 +1,9 @@
 import express from "express";
 import * as dotenv from 'dotenv';
 import cors from "cors";
-//import Password from "./util/passwordEncode"
 import routes from "./routes";
 const app = express();
-const port = process.env.PORT;
 dotenv.config()
-/* const pass = 'ola mundo'
-const psw = new Password(pass,process.env.KEY||'')
-let msg = psw.encode()
-msg = psw.decode() */
 const options: cors.CorsOptions = {
   allowedHeaders: [
     "Origin",
